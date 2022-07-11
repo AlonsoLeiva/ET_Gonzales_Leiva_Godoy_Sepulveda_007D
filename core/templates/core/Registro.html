@@ -1,0 +1,142 @@
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    {% load static %} 
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Registro</title>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script> 
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" href="{% static 'core/css/style2.css' %}">
+	<script src="{% static 'core/js/validacion.js' %}"></script>
+    
+	
+
+</head>
+
+<body>
+    <header>
+        <input type="checkbox" id="btn-menu">
+        <label for="btn-menu"><img src="{% static 'core/img/menu.png' %}" alt=""></label>
+        <nav class="menu">
+            <ul>
+                <iMG src="{% static 'core/img/Pawpet.png' %}" class="pawpet2">
+                <li><a href="{% url 'home' %}">Inicio</a></li>
+                <li><a href="{% url 'QuienesSomos' %}">Quienes somos</a></li>
+                <li><a href="{% url 'Galeria' %}">Galeria de fotos</a></li>
+                <li><a href="{% url 'form-donar' %}">Donar</a></li>
+                <li style="background-color: rgba(0,0,0,0.3);"><a>Registro</a></li>
+                <li><a href="{% url 'Ventas' %}">Comprar</a></li>
+            </ul>
+            <div><iMG src="{% static 'core/img/Pawpet.png' %}" class="pawpet"></div>
+        </nav>
+    </header>
+    <div class="container-fluid" style="margin-top: 50px;"> 
+        <div class="row justify-content-center">
+        <div class="col-sm-7" >
+            <div style="background-color: rgb(255, 255, 255); box-shadow: 0px 0px 5px 1px black; padding: 30px;">
+            
+            <form method="post" action="api/lista_personas/" id = "registration">
+                {% csrf_token %}
+                <h1>Formulario de Registro</h1>
+                <label>Nombres</label>
+                <input type = "text" class = "form-control" name = "nombre" id="nombre" placeholder = "Ingrese sus Nombres"/>
+                <br/>
+                <label>Apellidos</label>
+                <input type = "text" class = "form-control" name = "apellido" id="apellido" placeholder = "Ingrese sus Apellidos"/>
+                <br/>
+                <label>Rut</label>
+                <input type = "text" class = "form-control" name = "rut" id="rut" placeholder = "Ingrese su Rut"/>
+                <br/>
+                <label>Email</label>
+                <input type = "text" class = "form-control" name = "email" id="email" placeholder = "Ingrese su Email"/>
+                <br/>
+                <label>Contraseña</label>
+                <input type = "password" class = "form-control" name = "contraseña" placeholder = "Ingrese su Contraseña" id = "contraseña"/>
+                <br/>
+                <label>Confirmar Contraseña</label>
+                <input type = "password" class = "form-control" name = "conficontraseña" placeholder = "Ingrese nuevamente su Contraseña" id = "conficontraseña"/>
+                <br/>
+                <label>Género</label>
+                    <div>
+						<select class = "form-control" name = "genero" id="genero">
+                            <option value="" selected="" disabled="">--Seleccione Género--</option>
+                            <option>Masculino</option>
+                            <option>Femenino</option>
+                            <option>Otro</option>
+                        </select>
+                    </div>
+                <br/>
+                <label>Estado Civil</label>
+                    <div>
+                    	<select class = "form-control" name = "estadocivil" id="estadocivil">
+                            <option value="" selected="" disabled="">--Seleccione Estado Civil--</option>
+                            <option>Casado/a</option>
+                            <option>Soltero/a</option>
+                            <option>Viudo/a</option>
+                            <option>Divorciado/a</option>
+                        </select>
+                    </div>
+                <br/>
+                <label>Region</label>
+                    <select class = "form-control" name = "region" id="region">
+                    	<option value="0" selected="" disabled="">--Seleccione Región--</option>
+                        <option>Arica</option>
+                        <option>Tarapacá</option>
+                        <option>Antofagasta</option>
+                        <option>Atacama</option>
+                        <option>Coquimbo</option>
+                        <option>Valparaíso</option>
+                        <option>Metropolitana de Santiago</option>
+                        <option>Libertador General Bernardo O’Higgins</option>
+                        <option>Maule</option>
+                        <option>Ñuble</option>
+                        <option>Biobío</option>
+                        <option>La Araucanía</option>
+                        <option>Los Ríos</option>
+                        <option>Los Lagos</option>
+                        <option>Aysén del General Carlos Ibáñez del Campo</option>
+                        <option>Magallanes y la Antártica Chilena</option>
+                    </select>
+                <br/>
+                <label>¿Deseas Suscribirte a la fundación? Si lo haces obtendrás un descuento en tus próximas compras. Precio: $1000</label>
+                    <div>
+						<select class = "form-control" name = "suscripcion" id="suscripcion">
+                            <option value="" selected="" disabled="">--Seleccione si desea suscribirse o no--</option>
+                            <option>Si</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                <br/>
+                <label>Dirección</label>
+                <textarea class = "form-control" name = "direccion" placeholder="Ingrese su Dirección" id="direccion"></textarea>
+                <br/>
+                <button id="btn-validar" type = "submit" class = "btn btn-primary" >Registrarse</button>
+                <button type = "reset" class = "btn btn-primary" >Limpiar</button>
+                <br>
+                <br>
+                <a href="Consultar-datos">Consultar Registros</a>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container-fluid p-1 text-center" style="background-color: #4E94AB; margin-top: 10px;">
+            <div style="margin-top: 10px;"> 
+              <p>Angelo Gonzales, Alonso Leiva, Kevin Godoy, Ignacio Sepulveda ©Copyrigth Derechos reservados.</p>
+            </div>
+            <div>
+              
+                <a href="Insertar direccion de enlace"><img src="{% static 'core/img/Facebook.png' %}" width="40px"></a>
+                <a href="Insertar direccion de enlace"><img src="{% static 'core/img/Twitter.png' %}" width="40px"></a>
+                <a href="Insertar direccion de enlace"><img src="{% static 'core/img/Instagram.png' %}" width="40px"></a>
+              
+            </div>
+        
+          </div>  
+        </footer>
+</body>
+</html>

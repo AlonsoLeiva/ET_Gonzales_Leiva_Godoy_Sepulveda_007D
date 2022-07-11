@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  {% load static %} 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¿Quiénes somos?</title>
+  <link rel="stylesheet" href="{% static 'core/css/style2.css' %}">
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDO2wIp1Djj9W8cur7od8bHV9VzELD4tFA&callback=initMap" async defer></script>
+  <script src="{% static 'core/js/java.js' %}"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+  <header>
+    <input type="checkbox" id="btn-menu">
+    <label for="btn-menu"><img src="{% static 'core/img/menu.png' %}" alt=""></label>
+    <nav class="menu">
+        <ul>
+            <iMG src="{% static 'core/img/Pawpet.png' %}" class="pawpet2">
+            <li><a href="{% url 'home' %}">Inicio</a></li>
+            <li style="background-color: rgba(0,0,0,0.3);"><a>Quienes somos</a></li>
+            <li><a href="{% url 'Galeria' %}">Galeria de fotos</a></li>
+            <li><a href="{% url 'form-donar' %}">Donar</a></li>
+            <li><a href="{% url 'form-registro' %}">Registro</a></li>
+            <li><a href="{% url 'Ventas' %}">Comprar</a></li>
+        </ul>
+        <div><iMG src="{% static 'core/img/Pawpet.png' %}" class="pawpet"></div>
+    </nav>
+</header>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-sm-4">
+                <div class="titulo" style="margin-top: 22px; text-align: justify; padding: auto;">
+                <h2> ¿Quiénes somos?</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+                    
+                <div class="container-fluid" style="margin-top: 20px;"> 
+                    <div style="background-color: rgb(255, 255, 255); box-shadow: 0px 0px 5px 1px black; padding: 30px;">
+                      <div class="row justify-content-center" style=" font-size: 20px; text-align: justify; padding: 10px;">  
+                        <div class="col-sm-6">
+                          <h1>Misión</h1>
+                          <p>
+                            Pawpet se crea con la finalidad de ofrecerles una segunda oportunidad de bienestar a los animalitos que sufren enfermedades, abandono y hambre en nuestras
+                            calles. De todo esto nace la unión de un grupo de amigas para realizar un 
+                            emprendimiento social y ayudar a estos animalitos de las calles.
+                          </p>
+                          <h1>Visión</h1>
+                          <p>    Pawpet tiene la visión de llegar a más fundaciones para realizar aportes donativos para mejorar las instalaciones o la 
+                            compra de utensilios/alimentos para los animales que sufren en las calles y estos puedan ser cuidados por las mismas 
+                            fundaciones que los recogen.</p>
+                        </div>
+                        <div class="col-sm-6">
+                          <h1>Descripción</h1>
+                          <p>
+                            Pawpet es un grupo de personas organizadas para realizar este emprendimiento social, aplicando estrategias 
+                            comerciales y resolver problemas sociales y ambientales. Dándole la mayor prioridad al bienestar social mientras intenta 
+                            conseguir ganancias para mantener el proyecto cuyo motivo es re invertir parte de las ganancias para el beneficio de la comunidad
+                             y poder realizar la donación a la fundación en ayuda de estos animalitos de las calles.
+                        </p>
+                          </p>
+                          <p>
+                            Pero no te preocupes, si tú eres de las personas que les gusta tener otro tipo de mascotas que no es tan común que la mayoría de las personas tiene. Nuestra tienda también tiene productos para personas como tú y puedes observar todo nuestro stock en la pestaña de "Galería de fotos".
+                          </p>
+                      </div>
+                      
+                      <div>
+                        <div style="text-align: center">
+                          <br>
+                          <h1>¿Donde nos encontramos?</h1>
+                          <input class="btn btn-primary" type="button" value="Ubicación de la tienda" id="boton1" onclick="MostrarMapa(),MapaApi()">
+                        </div>
+                        <div class="mapa" id="mapas">
+                          <article id="mapa"></article>
+                        
+                        </div>
+                        <br>
+                      <div> 
+                        <div class="row justify-content-center">
+                             <div class="img" style="background-color: rgb(255, 255, 255); box-shadow: 0px 0px 5px 1px black; padding: 5px; margin-top: 10px;"><img src="{% static 'core/img/perrito.jpg' %}" style="display:block ; max-width:100% ;width: 100%;"></div>
+                             <div class="img" style="background-color: rgb(255, 255, 255); box-shadow: 0px 0px 5px 1px black; padding: 5px; margin-top: 10px; margin-left: 10px;"><img src="{% static 'core/img/perrito2.jpg' %}" style="display:block ; max-width:100% ;width: 100%;"></div>
+                          <div class="col-sm-8" style=" font-size: 20px; text-align: justify; padding: 10px;">
+                    </div>
+                    <br>
+                    <br>
+                  </div>
+                        <div class="embed-responsive embed-responsive-16by9">
+                          <iframe  src="https://www.youtube.com/embed/P-FCZWuUDDI" frameborder="0"  class="embed-responsive-item"></iframe>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<footer>
+  <div class="container-fluid p-1 text-center" style="background-color: #4E94AB; margin-top: 10px;">
+    <div style="margin-top: 10px;"> 
+      <p>Angelo Gonzales, Alonso Leiva, Kevin Godoy, Ignacio Sepulveda ©Copyrigth Derechos reservados.</p>
+    </div>
+    <div>
+      <a href="Insertar direccion de enlace"><img src="{% static 'core/img/Facebook.png' %}" width="40px"></a>
+        <a href="Insertar direccion de enlace"><img src="{% static 'core/img/Twitter.png' %}" width="40px"></a>
+        <a href="Insertar direccion de enlace"><img src="{% static 'core/img/Instagram.png' %}" width="40px"></a>
+    </div>
+  </div>  
+</footer>
+</body>
+</html>
+

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+    {% load static %} 
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Seguimiento de Pedido</title>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script> 
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" href="{% static 'core/css/style2.css' %}">
+	<script src="{% static 'core/js/validacion.js' %}"></script>
+    
+	
+
+</head>
+
+<body>
+    <header>
+        <input type="checkbox" id="btn-menu">
+        <label for="btn-menu"><img src="{% static 'core/img/menu.png' %}" alt=""></label>
+        <nav class="menu">
+            <ul>
+                <iMG src="{% static 'core/img/Pawpet.png' %}" class="pawpet2">
+                <li><a href="{% url 'home' %}">Inicio</a></li>
+                <li><a href="{% url 'QuienesSomos' %}">Quienes somos</a></li>
+                <li><a href="{% url 'Galeria' %}">Galeria de fotos</a></li>
+                <li><a href="{% url 'form-donar' %}">Donar</a></li>
+                <li><a href="{% url 'form-registro' %}">Registro</a></li>
+                <li><a href="{% url 'Ventas' %}">Comprar</a></li>
+            </ul>
+            <div><iMG src="{% static 'core/img/Pawpet.png' %}" class="pawpet"></div>
+        </nav>
+    </header>
+                
+           
+                    {% if compra and rut is 0 %}
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-sm-4">
+                <div class="titulo" style="margin-top: 22px; text-align: justify; padding: auto;">  
+                    <h2>N° de pedido: {{compra.boleta}}</h2> 
+                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" style="margin-top: 20px;"> 
+        <div style="background-color: rgb(255, 255, 255); box-shadow: 0px 0px 5px 1px black; padding: 30px;">
+        <div class="row justify-content-center" style=" font-size: 20px; text-align: justify; padding: 10px;">  
+        <div class="col-sm-12">
+
+        <br>
+        <div ALIGN="center">
+            <img src="../../static/core/img/seguimiento.png" ALIGN="center" style="display:block ; max-width:80% ;width: 80%;">
+        </div>
+        <br>
+        <br>
+        <div style="margin-left: 7%;">
+            <h5>Nombre de producto: {{compra.producto}}</h5>
+            <h5>Cantidad: {{compra.cantidad}}</h5>
+            <h5>Tarjeta usada: {{compra.tarjeta}}</h5>
+            <h5>Dirección de entrega: {{compra.direccion}}</h5>
+            <h5>Total: ${{compra.total}}</h5>
+        </div>
+        <div ALIGN="center">
+            <form method="POST" action="/Datos_boleta/">
+                {% csrf_token %}
+                <input type = "text" class = "form-control" style="display: none;" name = "boleta" id="boleta" placeholder = "Ingrese el número de boleta a buscar" value="{{compra.boleta}}">
+                <button id="btn-validar" type = "submit" class = "btn btn-primary" >Volver</button>
+                </div>
+            </form>
+        </div>
+        </div>
+        </div>
+    </div>
+        {% elif compra and rut is not 0 %}
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-sm-4">
+                    <div class="titulo" style="margin-top: 22px; text-align: justify; padding: auto;">  
+                        <h2>N° de pedido: {{compra.boleta}}</h2> 
+                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid" style="margin-top: 20px;"> 
+            <div style="background-color: rgb(255, 255, 255); box-shadow: 0px 0px 5px 1px black; padding: 30px;">
+            <div class="row justify-content-center" style=" font-size: 20px; text-align: justify; padding: 10px;">  
+            <div class="col-sm-12">
+    
+            <br>
+            <div ALIGN="center">
+                <img src="../../static/core/img/seguimiento.png" ALIGN="center" style="display:block ; max-width:80% ;width: 80%;">
+            </div>
+            <br>
+            <br>
+            <div style="margin-left: 7%;">
+                <h5>Nombre de producto: {{compra.producto}}</h5>
+                <h5>Cantidad: {{compra.cantidad}}</h5>
+                <h5>Tarjeta usada: {{compra.tarjeta}}</h5>
+                <h5>Dirección de entrega: {{compra.direccion}}</h5>
+                <h5>Total: ${{compra.total}}</h5>
+            </div>
+        <div ALIGN="center">
+            <form method="POST" action="/Consultar_compras/{{compra.rut}}">
+                {% csrf_token %}
+                <input type = "text" class = "form-control" style="display: none;" name = "rut" id="rut" placeholder = "Ingrese el número de boleta a buscar" value="{{compra.rut}}">
+                <button id="btn-validar" type = "submit" class = "btn btn-primary" >Volver</button>
+                </div>
+            </form> 
+            </div>
+            </div>
+            </div>
+        </div>
+
+        {% else %}
+        <div class="container-fluid" style="margin-top: 20px;"> 
+            <div style="background-color: rgb(255, 255, 255); box-shadow: 0px 0px 5px 1px black; padding: 30px;">
+                <div class="row justify-content-center" style=" font-size: 20px; text-align: justify; padding: 10px;">  
+                    <div class="col-sm-12">
+                        <div ALIGN="center">
+                            <h4 ALIGN="center">Error, si desea ver el seguimiento su compra, debe acceder primero a "Consultar pedido" en la pestaña "Galeria de fotos" .</h4>
+                            <br>
+                            <a class = "btn btn-primary" href="{% url 'home' %}">Volver</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+    <footer>
+        <div class="container-fluid p-1 text-center" style="background-color: #4E94AB; margin-top: 10px;">
+            <div style="margin-top: 10px;"> 
+              <p>Angelo Gonzales, Alonso Leiva, Kevin Godoy, Ignacio Sepulveda ©Copyrigth Derechos reservados.</p>
+            </div>
+            <div>
+              
+                <a href="Insertar direccion de enlace"><img src="{% static 'core/img/Facebook.png' %}" width="40px"></a>
+                <a href="Insertar direccion de enlace"><img src="{% static 'core/img/Twitter.png' %}" width="40px"></a>
+                <a href="Insertar direccion de enlace"><img src="{% static 'core/img/Instagram.png' %}" width="40px"></a>
+              
+            </div>
+        
+          </div>  
+        </footer>
+</body>
+</html>
+    
+    
+
+</body>
+</html>

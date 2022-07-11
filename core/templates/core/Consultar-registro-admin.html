@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    {% load static %} 
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Registro</title>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script> 
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" href="{% static 'core/css/style2.css' %}">
+	<script src="{% static 'core/js/validacion.js' %}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <header>
+        <input type="checkbox" id="btn-menu">
+        <label for="btn-menu"><img src="{% static 'core/img/menu.png' %}" alt=""></label>
+        <nav class="menu">
+            <ul>
+                <iMG src="{% static 'core/img/Pawpet.png' %}" class="pawpet2">
+                <li><a href="{% url 'home' %}">Inicio</a></li>
+                <li><a href="{% url 'QuienesSomos' %}">Quienes somos</a></li>
+                <li><a href="{% url 'Galeria' %}">Galeria de fotos</a></li>
+                <li><a href="{% url 'form-donar' %}">Donar</a></li>
+                <li><a href="{% url 'form-registro' %}">Registro</a></li>
+                <li><a href="{% url 'Ventas' %}">Comprar</a></li>
+            </ul>
+            <div><iMG src="{% static 'core/img/Pawpet.png' %}" class="pawpet"></div>
+        </nav>
+    </header>
+                    
+    <div  style="background-color: rgb(255, 255, 255); box-shadow: 0px 0px 5px 1px black; overflow-x:auto;">                
+        {% if Persona is not null and Persona is not 0%}
+        <Br>
+        <h1 ALIGN="CENTER">Personas Suscritas</h1>
+        <br>
+        <table class="table">
+         <thead>
+             <tr class="table-first-1">
+             <th class="table-first-1">Nombres</th>
+             <th class="table-first-1">Apellidos</th>
+             <th class="table-first-1">Rut</th>
+             <th class="table-first-1">Suscripción</th>
+             <th class="table-first-1">Modificar</th>
+             <th class="table-first-1">Eliminar</th>
+             </tr>
+         </thead>
+         <tbody>
+            {% for ve in Persona %}
+               <tr>
+                    <td class="table-list">{{ve.nombre}}</td>
+                    <td class="table-list">{{ve.apellido}}</td>
+                    <td class="table-list">{{ve.rut}}</td>
+                    <td class="table-list">{{ve.suscripcion}}</td>
+                    <form method="post" action="/form-mod-registro-admin/{{ve.rut}}" id = "registration">
+                        {% csrf_token %}
+                        <input style="display: none;" type = "text" class = "form-control" name = "rut" id="rut" placeholder = "Ingrese su Rut" value="{{Persona.rut}}"/>
+                        <td><button id="btn-validar" type = "submit" class = "btn btn-primary" >Modifciar Datos</button></td>
+                        
+                </form>
+                <td><button class="btn btn-primary" onclick="eliminarProducto('{{ve.rut}}');">Eliminar</button></td>
+               </tr>
+            {% endfor %}
+         </tbody>
+       </table>
+       
+        <div ALIGN="center">
+        <a class = "btn btn-primary" href="{% url 'Iniciar_Sesion' %}">Volver</a>
+        </div> 
+        {% elif usuario is 0 and contraseña is 0 %}
+        <div ALIGN="center">
+            <h4 ALIGN="center" style="margin-top: 100px;">Si desea ver el registro de los usuarios suscritos, primero debe iniciar sesión como administrador</h4>
+            <a class = "btn btn-primary" href="{% url 'Iniciar_Sesion' %}">Volver</a>
+        </div>
+        {% elif error is 1 %}
+        <div ALIGN="center">
+            <h4 ALIGN="center" style="margin-top: 100px;">Error, ususario o contraseña incorrectos</h4>
+            <a class = "btn btn-primary" href="{% url 'Iniciar_Sesion' %}">Volver</a>
+        </div>
+        {% elif Persona is 0 %}
+        <div ALIGN="center">
+            <h4 ALIGN="center" style="margin-top: 100px;">No existen personas suscritas a la fundación</h4>
+            <a class = "btn btn-primary" href="{% url 'Iniciar_Sesion' %}">Volver</a>
+        </div>
+        {% endif %}
+    </div> 
+
+
+    <footer>
+        <div class="container-fluid p-1 text-center" style="background-color: #4E94AB; margin-top: 10px;">
+            <div style="margin-top: 10px;"> 
+              <p>Angelo Gonzales, Alonso Leiva, Kevin Godoy, Ignacio Sepulveda ©Copyrigth Derechos reservados.</p>
+            </div>
+            <div>
+              
+                <a href="Insertar direccion de enlace"><img src="{% static 'core/img/Facebook.png' %}" width="40px"></a>
+                <a href="Insertar direccion de enlace"><img src="{% static 'core/img/Twitter.png' %}" width="40px"></a>
+                <a href="Insertar direccion de enlace"><img src="{% static 'core/img/Instagram.png' %}" width="40px"></a>
+              
+            </div>
+        
+          </div>  
+        </footer>
+</body>
+</html>
+    
+    
+
+</body>
+</html>

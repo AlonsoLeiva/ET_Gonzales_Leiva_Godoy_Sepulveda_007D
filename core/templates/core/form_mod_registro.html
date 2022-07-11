@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    {% load static %} 
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Modificar Datos</title>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script> 
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" href="{% static 'core/css/style2.css' %}">
+	<script src="{% static 'core/js/validacion.js' %}"></script>
+   
+</head>
+<body>
+    <header>
+        <input type="checkbox" id="btn-menu">
+        <label for="btn-menu"><img src="{% static 'core/img/menu.png' %}" alt=""></label>
+        <nav class="menu">
+            <ul>
+                <iMG src="{% static 'core/img/Pawpet.png' %}" class="pawpet2">
+                <li><a href="{% url 'home' %}">Inicio</a></li>
+                <li><a href="{% url 'QuienesSomos' %}">Quienes somos</a></li>
+                <li><a href="{% url 'Galeria' %}">Galeria de fotos</a></li>
+                <li><a href="{% url 'form-donar' %}">Donar</a></li>
+                <li><a href="{% url 'form-registro' %}">Registro</a></li>
+                <li><a href="{% url 'Ventas' %}">Comprar</a></li>
+            </ul>
+            <div><iMG src="{% static 'core/img/Pawpet.png' %}" class="pawpet"></div>
+        </nav>
+    </header>
+    {% if rut is not 0 %}
+    <div class="container-fluid" style="margin-top: 50px;"> 
+        <div class="row justify-content-center">
+        <div class="col-sm-7" >
+            <div style="background-color: rgb(255, 255, 255); box-shadow: 0px 0px 5px 1px black; padding: 30px;">
+
+            <form method="POST" action="/api/detalle_personas/{{Persona.rut}}" id = "registration">
+                {% csrf_token %}
+                <input type="hidden" name="metodo" id="metodo" value="PUT" />
+                <h1>Edición de Registro</h1>
+                <label>Nombres</label>
+                <input type = "text" class = "form-control" name = "nombre" id="nombre" placeholder = "Ingrese sus Nombres" value="{{Persona.nombre}}"/>
+                <br/>
+                <label>Apellidos</label>
+                <input type = "text" class = "form-control" name = "apellido" id="apellido" placeholder = "Ingrese sus Apellidos"  value="{{Persona.apellido}}"/>
+                <br/>
+                <label>Rut</label>
+                <input type = "text" class = "form-control" name = "rut" id="rut" placeholder = "Ingrese su Rut" readonly value="{{Persona.rut}}"/>
+                <br/>
+                <label>Email</label>
+                <input type = "text" class = "form-control" name = "email" id="email" placeholder = "Ingrese su Email" value="{{Persona.email}}"/>
+                <br/>
+                <label>Contraseña</label>
+                <input type = "password" class = "form-control" name = "contraseña" placeholder = "Ingrese su Contraseña" id = "contraseña" value="{{Persona.contraseña}}"/>
+                <br/>
+                <label>Confirmar Contraseña</label>
+                <input type = "password" class = "form-control" name = "conficontraseña" placeholder = "Ingrese nuevamente su Contraseña" id = "conficontraseña" value="{{Persona.conficontraseña}}"/>
+                <br/>
+                <label>Género</label>
+                    <div>
+                        <select class = "form-control" name = "genero" id="genero">
+                            <option value="{{Persona.genero}}" selected="" >{{Persona.genero}}</option>
+                            <option>Masculino</option>
+                            <option>Femenino</option>
+                            <option>Otro</option>
+                        </select>
+                    </div>
+                <br/>
+                <label>Estado Civil</label>
+                    <div>
+                        <select class = "form-control" name = "estadocivil" id="estadocivil">
+                            <option value="{{Persona.estadocivil}}" selected="">{{Persona.estadocivil}}</option>
+                            <option value="Casado/a">Casado/a</option>
+                            <option value="Soltero/a">Soltero/a</option>
+                            <option value="Viudo/a">Viudo/a</option>
+                            <option value="Divorciado/a">Divorciado/a</option>
+                        </select>
+                    </div>
+                <br/>
+                <label>Region</label>
+                    <select class = "form-control" name = "region" id="region">
+                        <option value="{{Persona.region}}" selected="">{{Persona.region}}</option>
+                        <option value="Arica">Arica</option>
+                        <option value="Tarapacá">Tarapacá</option>
+                        <option value="Antofagasta">Antofagasta</option>
+                        <option value="Atacama">Atacama</option>
+                        <option value="Coquimbo">Coquimbo</option>
+                        <option value="Valparaíso">Valparaíso</option>
+                        <option value="Metropolitana de Santiago">Metropolitana de Santiago</option>
+                        <option value="Libertador General Bernardo O’Higgins">Libertador General Bernardo O’Higgins</option>
+                        <option value="Maule">Maule</option>
+                        <option value="Ñuble">Ñuble</option>
+                        <option value="Biobío">Biobío</option>
+                        <option value="La Araucanía">La Araucanía</option>
+                        <option value="Los Ríos">Los Ríos</option>
+                        <option value="Los Lagos">Los Lagos</option>
+                        <option value="Aysén del General Carlos Ibáñez del Campo">Aysén del General Carlos Ibáñez del Campo</option>
+                        <option value="Magallanes y la Antártica Chilena">Magallanes y la Antártica Chilena</option>
+                    </select>
+                <br/>
+                <label>¿Deseas Suscribirte a la fundación? Si lo haces obtendrás un descuento en tus próximas compras. Precio: $1000</label>
+                    <div>
+						<select class = "form-control" name = "suscripcion" id="suscripcion">
+                            <option value="{{Persona.suscripcion}}" selected="">{{Persona.suscripcion}}</option>
+                            <option>Si</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                <br/>
+                <label>Dirección</label>
+                <textarea class = "form-control" name = "direccion" placeholder="Ingrese su Dirección" id="direccion" >{{Persona.direccion}}</textarea>
+                <br/>
+                <button id="btn-validar" type = "submit" class = "btn btn-primary" >Modificar</button>
+                <button type = "reset" class = "btn btn-primary" >Limpiar</button>
+                <a class="btn btn-primary" href="{% url 'Consultar_datos' %}">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="container-fluid" style="margin-top: 50px;"> 
+    <div class="row justify-content-center">
+    <div class="col-sm-7" >
+        <div style="background-color: rgb(255, 255, 255); box-shadow: 0px 0px 5px 1px black; padding: 30px;">
+            <h3 style="text-align: center;">Error, si desea modificar sus datos, primero debe iniciar sesión. Puede hacerlo desde la pestaña "Registro"</h3>
+        </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+</body>
+</html>

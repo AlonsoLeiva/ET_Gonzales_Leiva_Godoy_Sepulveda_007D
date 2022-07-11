@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Donaciones realizadas</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+<body>
+    <html lang="en">
+<head>
+	<meta charset="utf-8">
+    {% load static %} 
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Registro</title>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script> 
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" href="{% static 'core/css/style2.css' %}">
+	<script src="{% static 'core/js/validacion.js' %}"></script>
+    
+	
+
+</head>
+
+<body>
+    <header>
+        <input type="checkbox" id="btn-menu">
+        <label for="btn-menu"><img src="{% static 'core/img/menu.png' %}" alt=""></label>
+        <nav class="menu">
+            <ul>
+                <iMG src="{% static 'core/img/Pawpet.png' %}" class="pawpet2">
+                <li><a href="{% url 'home' %}">Inicio</a></li>
+                <li><a href="{% url 'QuienesSomos' %}">Quienes somos</a></li>
+                <li><a href="{% url 'Galeria' %}">Galeria de fotos</a></li>
+                <li><a href="{% url 'form-donar' %}">Donar</a></li>
+                <li><a href="{% url 'form-registro' %}">Registro</a></li>
+                <li><a href="{% url 'Ventas' %}">Comprar</a></li>
+            </ul>
+            <div><iMG src="{% static 'core/img/Pawpet.png' %}" class="pawpet"></div>
+        </nav>
+    </header>
+                    
+    <div  style="background-color: rgb(255, 255, 255); box-shadow: 0px 0px 5px 1px black; overflow-x:auto;">                
+        {% if Donacion is not null and dona is not 0%}
+        <Br>
+        <h1 ALIGN="CENTER">Donaciones Realizadas</h1>
+        <br>
+        <table class="table">
+         <thead>
+             <tr class="table-first-1">
+             <th class="table-first-1">Nombres</th>
+             <th class="table-first-1">Apellidos</th>
+             <th class="table-first-1">Tarjeta</th>
+             <th class="table-first-1">Monto</th>
+             <th class="table-first-1">Comentario</th>
+             <th></th>
+             </tr>
+         </thead>
+         <tbody>
+            {% for ve in Donacion %}
+               <tr>
+                    <td class="table-list">{{ve.nombre}}</td>
+                    <td class="table-list">{{ve.apellido}}</td>
+                    <td class="table-list">{{ve.tarjeta}}</td>
+                    <td class="table-list">{{ve.monto}}</td>
+                    <td class="table-list">{{ve.comentario}}</td>
+                    <form method="post" action="/form-mod-donar/{{ve.id}}" id = "registration">
+                        {% csrf_token %}
+                        <input style="display: none;" type = "text" class = "form-control" name = "rut" id="rut" placeholder = "Ingrese su Rut" value="{{Persona.rut}}"/>
+                        <td><button id="btn-validar" type = "submit" class = "btn btn-primary" >Modifciar Datos</button></td>
+                </form>
+               </tr>
+            {% endfor %}
+         </tbody>
+       </table>
+       
+        <div ALIGN="center">
+        <a class = "btn btn-primary" href="{% url 'Consultar_datos_donar' %}">Volver</a>
+        </div> 
+        {% elif dona is 0 %}
+        <div ALIGN="center">
+            <h4 ALIGN="center" style="margin-top: 100px;">Error, si desea ver los datos de alguna donación, debe irse a "Consultar donaciones" en la pestaña "Donar"</h4>
+            <a class = "btn btn-primary" href="{% url 'Consultar_datos_donar' %}">Volver</a>
+        </div>
+        {% else %}
+        <div ALIGN="center">
+            <h4 ALIGN="center" style="margin-top: 100px;">{{mensaje}}</h4>
+            <a class = "btn btn-primary" href="{% url 'Consultar_datos_donar' %}">Volver</a>
+        </div>
+        {% endif %}
+    </div> 
+
+
+    <footer>
+        <div class="container-fluid p-1 text-center" style="background-color: #4E94AB; margin-top: 10px;">
+            <div style="margin-top: 10px;"> 
+              <p>Angelo Gonzales, Alonso Leiva, Kevin Godoy, Ignacio Sepulveda ©Copyrigth Derechos reservados.</p>
+            </div>
+            <div>
+              
+                <a href="Insertar direccion de enlace"><img src="{% static 'core/img/Facebook.png' %}" width="40px"></a>
+                <a href="Insertar direccion de enlace"><img src="{% static 'core/img/Twitter.png' %}" width="40px"></a>
+                <a href="Insertar direccion de enlace"><img src="{% static 'core/img/Instagram.png' %}" width="40px"></a>
+              
+            </div>
+        
+          </div>  
+        </footer>
+</body>
+</html>
+    
+    
+
+</body>
+</html>

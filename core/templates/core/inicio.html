@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %} 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <link rel="stylesheet" href="{% static 'core/css/style2.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="{% static 'core/js/java.js' %}"></script>
+  </head>
+<body>
+    <header>
+        <input type="checkbox" id="btn-menu">
+        <label for="btn-menu"><img src="{% static 'core/img/menu.png' %}" alt=""></label>
+        <nav class="menu">
+            <ul>
+                <iMG src="{% static 'core/img/Pawpet.png' %}" class="pawpet2">
+                  <li style="background-color: rgba(0,0,0,0.3);"><a>Inicio</a></li>
+                  <li><a href="{% url 'QuienesSomos' %}">Quienes somos</a></li>
+                  <li><a href="{% url 'Galeria' %}">Galeria de fotos</a></li>
+                  <li><a href="{% url 'form-donar' %}">Donar</a></li>
+                  <li><a href="{% url 'form-registro' %}">Registro</a></li>
+                  <li><a href="{% url 'Ventas' %}">Comprar</a></li>
+            </ul>
+            <div><iMG src="{% static 'core/img/Pawpet.png' %}" class="pawpet"></div>
+        </nav>
+    </header>
+    <div class="container-fluid"> 
+      <div class="row justify-content-center">
+        <div class="col-sm-8" style="font-size: 20px; padding: 10px;">
+          <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" style="background-color: rgb(255, 255, 255) ; padding: 30px; box-shadow: 0px 0px 5px 1px black;">
+            <div class="carousel-indicators">
+              <button type="button" data-target="#carouselExampleCaptions" data-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-target="#carouselExampleCaptions" data-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-target="#carouselExampleCaptions" data-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img onmouseover="MostrarTexto()" onmouseout="OcultarTexto()" src="{% static 'core/img/accesorios.jpg' %}"alt="...">
+                <div class="carousel-caption d-none d-md-block" >
+                  <h3 id="texto">Todos los accesorios que busques en un solo lugar</h3>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img onmouseover="MostrarTexto()" onmouseout="OcultarTexto()" src="{% static 'core/img/accesorios-gatos-800x375.jpg' %}"alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                  <h3 id="texto2">¡Haz que tu felino se sienta a gusto!</h3>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <a href="Galeria"><img onmouseover="MostrarTexto()" onmouseout="OcultarTexto()" src="{% static 'core/img/Galeria de fotos.jpg' %}"alt="..."></a>
+                <div class="carousel-caption d-none d-md-block">
+                  <h3 id="texto3">¡Observa todo nuestro catalogo!</h3>
+                </div>
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-target="#carouselExampleCaptions" data-slide="prev" style="background-color: transparent; border: 0px;">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-target="#carouselExampleCaptions" data-slide="next" style="background-color: transparent; border: 0px;">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden"></span>
+            </button>
+          </div> 
+        </div>
+      </div>
+    </div>        
+    <div class="container-fluid"> 
+      <div style="background-color: rgb(255, 255, 255); box-shadow: 0px 0px 5px 1px black; padding: 30px;">
+        <div class="row justify-content-center" style=" font-size: 20px; text-align: justify; padding: 10px;">  
+          <div class="col-sm-6">
+            <h1>Nosotros</h1>
+            <p>
+              Somos "PawPet" y esta es nuestra tienda que es totalmente sin fines de lucros, podrás encontrar todo tipo de accesorios para tu amigo y fiel compañero peludo. En "PawPet" podrás encontrar desde: bandanas, correas, camas, disfraces o incluso identificadores. En nuestra tienda es garantizado que lograrás encontrar algo que le siente perfecto a tu amiguito, incluso tenemos una sección de productos totalmente personalizable a tu gusto.
+            </p>
+          </div>
+          <div class="col-sm-6">
+            <h1>Productos</h1>
+            <p>
+              Nuestra tienda se especializa en todo lo que una mascota puede llegar a necesitar. Por lo que, te va a ser demasiado sencillo encontrar algún disfraz, cama o incluso comida de perro/gato.
+            </p>
+            <p>
+              Pero no te preocupes, si tú eres de las personas que les gusta tener otro tipo de mascotas que no es tan común que la mayoría de las personas tiene. Nuestra tienda también tiene productos para personas como tú y puedes observar todo nuestro stock en la pestaña de "Galería de fotos".
+            </p>
+        </div>  
+      </div>
+    </div>
+
+    </div>
+    <div class="container-fluid p-1 text-center" style="background-color: #4E94AB; margin-top: 65px;">
+      <div style="margin-top: 10px;"> 
+        <p>Angelo Gonzales, Alonso Leiva, Kevin Godoy, Ignacio Sepulveda ©Copyrigth Derechos reservados.</p>
+      </div>
+      <div>
+        
+        <a href="Insertar direccion de enlace"><img src="{% static 'core/img/Facebook.png' %}" width="40px"></a>
+        <a href="Insertar direccion de enlace"><img src="{% static 'core/img/Twitter.png' %}" width="40px"></a>
+        <a href="Insertar direccion de enlace"><img src="{% static 'core/img/Instagram.png' %}" width="40px"></a>
+        
+      </div>
+  
+    </div>  
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    {% load static %} 
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Donaciones</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" href="{% static 'core/css/style2.css' %}">
+	<script src="{% static 'core/js/validacion2.js' %}"></script>
+
+	
+
+</head>
+
+<body>
+    <header>
+        <input type="checkbox" id="btn-menu">
+        <label for="btn-menu"><img src="{% static 'core/img/menu.png' %}" alt=""></label>
+        <nav class="menu">
+            <ul>
+                <iMG src="{% static 'core/img/Pawpet.png' %}" class="pawpet2">
+                    <li><a href="{% url 'home' %}">Inicio</a></li>
+                    <li><a href="{% url 'QuienesSomos' %}">Quienes somos</a></li>
+                    <li><a href="{% url 'Galeria' %}">Galeria de fotos</a></li>
+                    <li style="background-color: rgba(0,0,0,0.3);"><a>Donar</a></li>
+                    <li><a href="{% url 'form-registro' %}">Registro</a></li>
+                    <li><a href="{% url 'Ventas' %}">Comprar</a></li>
+            </ul>
+            <div><iMG src="{% static 'core/img/Pawpet.png' %}" class="pawpet"></div>
+        </nav>
+    </header>
+    <div class="container-fluid" style="margin-top: 50px;"> 
+    <div class="row justify-content-center">
+    	<div class = "col-sm-7">
+            <div style="background-color: rgb(255, 255, 255); box-shadow: 0px 0px 5px 1px black; padding: 30px;">
+               	<form method="POST" action="api/lista_donaciones/" id="formulario-donar">  
+                       {% csrf_token %}       
+                    <div>
+                        <h1>Donativos a PawPet<h1></h1>
+                    </div>
+            <div>
+                <label for="">Nombre:</label>
+                   	<input type = "text" class = "form-control" name = "nombre" id="nombre" placeholder = "Ingrese Nombre"/>
+                    <br/>
+                    <label for="">Apellido:</label>
+                    <input type = "text" class = "form-control" name = "apellido" id="apellido" placeholder = "Ingrese Apellido"/>
+                    <br/>
+                    <label for="">Metodo de pago:</label>
+                    <select class = "form-control" name = "pago" id="pago">
+                      	<option value="0" selected="" disabled="">Elegir metodo</option>
+                        <option>Debito</option>
+                        <option>Credito</option>
+                        </select>
+                        <br/>
+                        <label for="">Numero de tarjeta:</label>
+                        <input type = "number" class = "form-control" name = "tarjeta" id="tarjeta" placeholder = "Ingrese el numero de su tarjeta"/>
+                        <br/>
+                        <label for="">Fecha de expiracion:</label>
+                        <input type = "month" class = "form-control" name = "fecha_expira" placeholder = "" id = "fecha_expira"/>
+                        <br/>
+                        <label for="">CVV:</label>
+                        <input type = "number" class = "form-control" name = "cvv" placeholder = "Los 3 numeros tras su tarjeta" id = "cvv"/>
+                        <br/>
+                        <label for="">Monto (Monto mínimo es de $1000):</label>
+                        <input type = "number" class = "form-control" name = "monto" placeholder = "Ingrese un monto a donar" id = "monto"/>
+                        <br/>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" name="aceptar" id="aceptar">Aceptar politica de no reembolsos </input>
+                        </div>
+                        <label for="aceptar" class="error" style="display: none;"></label>
+                        <br/>
+                        <label for="">Comentario:</label>
+                        <textarea class = "form-control" name = "comentario" placeholder="Escriba el comentario" id="comentario"></textarea>
+                        <br/>
+                        <button type = "submit" class = "btn btn-primary" id="btn-donar">Donar</button>
+                        <button type = "reset" class = "btn btn-primary" >Limpiar</button>
+                        <br>
+                        <br>
+                        <a href="{% url 'Consultar_datos_donar' %}">Consultar Donaciones</a>
+                    </form>
+                    </div>
+                        
+                </div>
+            </div>
+        </div>
+</div>
+<footer>
+<div class="container-fluid p-1 text-center" style="background-color: #4E94AB; margin-top: 10px;">
+    <div style="margin-top: 10px;"> 
+      <p>Angelo Gonzales, Alonso Leiva, Kevin Godoy, Ignacio Sepulveda ©Copyrigth Derechos reservados.</p>
+    </div>
+    <div>
+      
+        <a href="Insertar direccion de enlace"><img src="{% static 'core/img/Facebook.png' %}" width="40px"></a>
+        <a href="Insertar direccion de enlace"><img src="{% static 'core/img/Twitter.png' %}" width="40px"></a>
+        <a href="Insertar direccion de enlace"><img src="{% static 'core/img/Instagram.png' %}" width="40px"></a>
+      
+    </div>
+
+  </div>  
+</footer>
+</body>
+</html>

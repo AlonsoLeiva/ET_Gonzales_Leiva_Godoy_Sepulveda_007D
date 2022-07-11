@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    {% load static %} 
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Modificar Datos</title>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script> 
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" href="{% static 'core/css/style2.css' %}">
+	<script src="{% static 'core/js/validacion.js' %}"></script>
+   
+</head>
+<body>
+    <header>
+        <input type="checkbox" id="btn-menu">
+        <label for="btn-menu"><img src="{% static 'core/img/menu.png' %}" alt=""></label>
+        <nav class="menu">
+            <ul>
+                <iMG src="{% static 'core/img/Pawpet.png' %}" class="pawpet2">
+                <li><a href="{% url 'home' %}">Inicio</a></li>
+                <li><a href="{% url 'QuienesSomos' %}">Quienes somos</a></li>
+                <li><a href="{% url 'Galeria' %}">Galeria de fotos</a></li>
+                <li><a href="{% url 'form-donar' %}">Donar</a></li>
+                <li><a href="{% url 'form-registro' %}">Registro</a></li>
+                <li><a href="{% url 'Ventas' %}">Comprar</a></li>
+            </ul>
+            <div><iMG src="{% static 'core/img/Pawpet.png' %}" class="pawpet"></div>
+        </nav>
+    </header>
+    {% if rut is not 0 %}
+    <div class="container-fluid" style="margin-top: 50px;"> 
+        <div class="row justify-content-center">
+        <div class="col-sm-7" >
+            <div style="background-color: rgb(255, 255, 255); box-shadow: 0px 0px 5px 1px black; padding: 30px;">
+
+            <form method="POST" action="/api/detalle_personas/{{Persona.rut}}" id = "registration">
+                {% csrf_token %}
+                <h1>Edición de Registro</h1>
+                <label>Nombres</label>
+                <input type = "text" class = "form-control" name = "nombre" id="nombre"  placeholder = "Ingrese sus Nombres" readonly value="{{Persona.nombre}}"/>
+                <br/>
+                <label>Apellidos</label>
+                <input type = "text" class = "form-control" name = "apellido" id="apellido" readonly placeholder = "Ingrese sus Apellidos"  value="{{Persona.apellido}}"/>
+                <br/>
+                <label>Rut</label>
+                <input type = "text" class = "form-control" name = "rut" id="rut" readonly placeholder = "Ingrese su Rut"  value="{{Persona.rut}}"/>
+                <br/>
+                <label>Email</label>
+                <input type = "text" class = "form-control" name = "email" id="email" readonly placeholder = "Ingrese su Email" value="{{Persona.email}}"/>
+                <br/>
+                <label>Contraseña</label>
+                <input type = "password" class = "form-control" name = "contraseña" readonly placeholder = "Ingrese su Contraseña" id = "contraseña" value="{{Persona.contraseña}}"/>
+                <br/>
+                <label>Confirmar Contraseña</label>
+                <input type = "password" class = "form-control" name = "conficontraseña" readonly placeholder = "Ingrese nuevamente su Contraseña" id = "conficontraseña" value="{{Persona.conficontraseña}}"/>
+                <br/>
+                <label>Género</label>
+                    <div>
+                        <input type="text" class = "form-control" readonly name = "genero" id="genero" value="{{Persona.genero}}">
+                    </div>
+                <br/>
+                <label>Estado Civil</label>
+                    <div>
+                        <input type="text" class = "form-control" readonly name = "estadocivil" id="estadocivil" value="{{Persona.estadocivil}}">
+                    </div>
+                <br/>
+                <label>Region</label>
+                    <input type="text" class = "form-control" readonly name = "region" id="region" value="{{Persona.region}}">
+                <br/>
+                <label>¿Deseas Suscribirte a la fundación? Si lo haces obtendrás un descuento en tus próximas compras. Precio: $1000</label>
+                    <div>
+						<select class = "form-control" name = "suscripcion" id="suscripcion">
+                            <option value="{{Persona.suscripcion}}" selected="">{{Persona.suscripcion}}</option>
+                            <option>Si</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                <br/>
+                <label>Dirección</label>
+                <textarea class = "form-control" name = "direccion" readonly placeholder="Ingrese su Dirección" id="direccion" >{{Persona.direccion}}</textarea>
+                <br/>
+                <button id="btn-validar" type = "submit" class = "btn btn-primary" >Modificar</button>
+                <button type = "reset" class = "btn btn-primary" >Limpiar</button>
+                <a class="btn btn-primary" href="{% url 'Consultar_datos' %}">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="container-fluid" style="margin-top: 50px;"> 
+    <div class="row justify-content-center">
+    <div class="col-sm-7" >
+        <div style="background-color: rgb(255, 255, 255); box-shadow: 0px 0px 5px 1px black; padding: 30px;">
+            <h3 style="text-align: center;">Error, si desea modificar sus datos, primero debe iniciar sesión. Puede hacerlo desde la pestaña "Registro"</h3>
+        </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+</body>
+</html>

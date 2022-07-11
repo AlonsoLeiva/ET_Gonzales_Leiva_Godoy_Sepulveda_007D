@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  {% load static %} 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'core/css/style2.css' %}">
+  <link rel="stylesheet" href="{% static 'core/css/estilo.css' %}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <title>Galeria de fotos</title>
+</head>
+<body>
+  <script src="{% static 'core/js/datos.js' %}"></script>
+  <header>
+    <input type="checkbox" id="btn-menu">
+    <label for="btn-menu"><img src="{% static 'core/img/menu.png' %}" alt=""></label>
+    <nav class="menu">
+        <ul>
+            <iMG src="{% static 'core/img/Pawpet.png' %}" class="pawpet2">
+              <li><a href="{% url 'home' %}">Inicio</a></li>
+              <li><a href="{% url 'QuienesSomos' %}">Quienes somos</a></li>
+              <li style="background-color: rgba(0,0,0,0.3);"><a>Galeria de fotos</a></li>
+              <li><a href="{% url 'form-donar' %}">Donar</a></li>
+              <li><a href="{% url 'form-registro' %}">Registro</a></li>
+              <li><a href="{% url 'Ventas' %}">Comprar</a></li>
+        </ul>
+        <div><iMG src="{% static 'core/img/Pawpet.png' %}" class="pawpet"></div>
+    </nav>
+</header>
+<div style="margin-top: 10px; margin-right: 5px;">
+  <a style="float:right;" class="btn btn-primary" href="{% url 'Consultar_boleta' %}">Consultar Pedido</a>
+</div>
+<div class="container-fluid"> 
+  <div class="row justify-content-center">
+<div class="titulo"><h2> Galeria de fotos</h2></div>
+</div>
+</div>
+<div class="container-fluid"> 
+  <div class="row justify-content-center">
+<div class="titulo">
+  <!--PRIMERA FOTO-->
+  </div>
+      <div class="galeria">
+        <div class="foto">
+          <img src="{% static 'core/img/akatsuki.jpg' %}" id=imagen alt="disfraz">
+        </div>
+      <div class="pie">
+        <p id="titulo">Disfraz Akatsuki Perro</p>
+        <p><button id="boton" onclick="mostrar();">Datos</button></p>
+        <form method="POST" action="/Ventas_completado">
+          {% csrf_token %}
+          <input style="display: none;" type = "text" class = "form-control" name = "nombre" id="nombre" value="{{stock.0.nombreproducto}}">
+        <p><button type = "submit">Comprar</button></p>
+      </form>
+        <div id="datos">
+          <div class="pie">
+            <h3>Disfraz para cachorro Akatsuki tamaño mediano</h3>
+            <h2>Medidas:</h5><b>M, L, XL, XXL</b></b>
+            <br>
+            <h1>precio:</h1>
+            <h2>$15.990</h2>
+            <h1>stock:</h1>
+            <h2>{{stock.0.stock}}</h2>
+          </div>
+          <p><button id="boton2" onclick="ocultar();">Ocultar Datos</button></p>
+        </div>
+      </div>
+      </div>
+  <!--SEGUNDA FOTO-->
+  <div class="galeria">
+    <div class="foto">
+        <img src="{% static 'core/img/arena_gato.jpg' %}" id="imagen2" alt="Arena de gato">
+      </a>
+    </div>
+    <div class="pie">
+      <p id="titulo2">Arena para gato</p>
+      <p><button id="boton3" onclick="mostrar2();">Datos</button></p>
+      <form method="POST" action="/Ventas_completado">
+        {% csrf_token %}
+        <input style="display: none;" type = "text" class = "form-control" name = "nombre" id="nombre" value="{{stock.1.nombreproducto}}">
+      <p><button type = "submit">Comprar</button></p>
+    </form>
+      <div id="datos2">
+        <div class="pie">
+          <h3>Arena sanitaria para gato marca top.k9</h3>
+          <br>
+          <h2>Tamaño:</h2><b>500g</b></b>
+          <br>
+          <h1>precio:</h1>
+          <h2>$11.990</h2>
+          <h1>stock:</h1>
+            <h2>{{stock.1.stock}}</h2>
+        </div>
+        <p><button id="boton4" onclick="ocultar2();">Ocultar Datos</button></p>
+      </div>
+    </div>
+  </div>
+    <!--TERCERA FOTO-->
+  <div class="galeria">
+    <div class="foto">
+      <img src="{% static 'core/img/collar_perro.jpg' %}" id=imagen3 alt="collar">
+    </div>
+  <div class="pie">
+    <p id="titulo3">Collar para perro adulto ajustable</p>
+    <p><button id="boton5" onclick="mostrar3();">Datos</button></p>
+    <form method="POST" action="/Ventas_completado">
+      {% csrf_token %}
+      <input style="display: none;" type = "text" class = "form-control" name = "nombre" id="nombre" value="{{stock.2.nombreproducto}}">
+    <p><button type = "submit">Comprar</button></p>
+  </form>
+    <div id="datos3">
+      <div class="pie">
+        <h1>Collar para perro adulto ajustable</h3>
+        <br>
+        <h2>Tamaño:</h2><b>S, XS, M, XL</b></b>
+        <br>
+        <h1>precio:</h1>
+        <br>
+        <h2>$6.990</h2>
+        <h1>stock:</h1>
+            <h2>{{stock.2.stock}}</h2>
+      </div>
+      <p><button id="boton6" onclick="ocultar3();">Ocultar Datos</button></p>
+    </div>
+  </div>
+  </div>
+
+
+  <!--CUARTA FOTO-->
+  <div class="galeria">
+    <div class="foto">
+      <img src="{% static 'core/img/rascador.jpg' %}" id=imagen4 alt="rascador">
+    </div>
+  <div class="pie">
+    <p id="titulo4">Rascador grande para gato</p>
+    <p><button id="boton7" onclick="mostrar4();">Datos</button></p>
+    <form method="POST" action="/Ventas_completado">
+      {% csrf_token %}
+      <input style="display: none;" type = "text" class = "form-control" name = "nombre" id="nombre" value="{{stock.3.nombreproducto}}">
+    <p><button type = "submit">Comprar</button></p>
+  </form>
+    <div id="datos4">
+      <div class="pie">
+        <h1>Rascador grande para gato tres niveles</h1>
+        <br>
+        <h2>Tamaño:</h5><b> 34 cm x 34 cm x 91 cm</b></b>
+        <br>
+        <h1>precio:</h1>
+        <br>
+        <h2>$159.990</h2>
+        <h1>stock:</h1>
+            <h2>{{stock.3.stock}}</h2>
+      </div>
+      <p><button id="boton8" onclick="ocultar4();">Ocultar Datos</button></p>
+    </div>
+  </div>
+  </div>
+
+  <!--QUINTA FOTO-->
+  <div class="galeria">
+    <div class="foto">
+      <img src="{% static 'core/img/galleta_doo.jpg' %}" id=imagen5 alt="scooby galletas">
+    </div>
+  <div class="pie">
+    <p id="titulo5">Scooby galletas</p>
+    <p><button id="boton9" onclick="mostrar5();">Datos</button></p>
+    <form method="POST" action="/Ventas_completado">
+      {% csrf_token %}
+      <input style="display: none;" type = "text" class = "form-control" name = "nombre" id="nombre" value="{{stock.4.nombreproducto}}">
+    <p><button type = "submit">Comprar</button></p>
+  </form>
+    <div id="datos5">
+      <div class="pie">
+        <h1>Scooby galletas de trigo</h3>
+          <br>
+          <h2>Cantidad:</h5><b>6 Unidades</b></b>
+          <br>
+          <h1>precio:</h1>
+          <br>
+          <h2>$16.990</h2>
+          <h1>stock:</h1>
+          <h2>{{stock.4.stock}}</h2>
+      </div>
+      <p><button id="boton10" onclick="ocultar5();">Ocultar Datos</button></p>
+    </div>
+  </div>
+  </div>
+
+
+  <!--SEXTA FOTO-->
+  <div class="galeria">
+    <div class="foto">
+      <img src="{% static 'core/img/michi_cat.jpg' %}" id=imagen6 alt="comida de gato">
+    </div>
+  <div class="pie">
+    <p id="titulo6">Alimento para gato</p>
+    <p><button id="boton11" onclick="mostrar6();">Datos</button></p>
+    <form method="POST" action="/Ventas_completado">
+      {% csrf_token %}
+      <input style="display: none;" type = "text" class = "form-control" name = "nombre" id="nombre" value="{{stock.5.nombreproducto}}">
+    <p><button type = "submit">Comprar</button></p>
+  </form>
+    <div id="datos6">
+      <div class="pie">
+        <h1>Alimento para gato MichiCat</h3>
+          <br>
+          <h2>Cantidad:</h5><b> 9kg</b></b>
+          <br>
+          <h1>precio:</h1>
+          <br>
+          <h2>$39.990</h2>
+          <h1>stock:</h1>
+          <h2>{{stock.5.stock}}</h2>
+      </div>
+      <p><button id="boton12" onclick="ocultar6();">Ocultar Datos</button></p>
+    </div>
+  </div>
+  </div>
+
+  <!--SEPTIMA FOTO-->
+  <div class="galeria">
+    <div class="foto">
+      <img src="{% static 'core/img/erizo_comida.jpg' %}" id=imagen7 alt="comida de erizo">
+    </div>
+  <div class="pie">
+    <p id="titulo7">Comida para erizo</p>
+    <p><button id="boton13" onclick="mostrar7();">Datos</button></p>
+    <form method="POST" action="/Ventas_completado">
+      {% csrf_token %}
+      <input style="display: none;" type = "text" class = "form-control" name = "nombre" id="nombre" value="{{stock.6.nombreproducto}}">
+    <p><button type = "submit">Comprar</button></p>
+  </form>
+    <div id="datos7">
+      <div class="pie">
+        <h1>Alimento dietetico para erizo Mazuri</h3>
+          <br>
+          <h2>Cantidad:</h5><b>276g</b></b>
+          <br>
+          <h1>precio:</h1>
+          <br>
+          <h2>$19.990</h2>
+          <h1>stock:</h1>
+          <h2>{{stock.6.stock}}</h2>
+      </div>
+      <p><button id="boton14" onclick="ocultar7();">Ocultar Datos</button></p>
+    </div>
+  </div>
+  </div>
+
+
+  <!--OCTAVA FOTO-->
+  <div class="galeria">
+    <div class="foto">
+      <img src="{% static 'core/img/pecera.png' %}" id=imagen8 alt="pecera">
+    </div>
+  <div class="pie">
+    <p id="titulo8">Pecera de tortuga</p>
+    <p><button id="boton15" onclick="mostrar8();">Datos</button></p>
+    <form method="POST" action="/Ventas_completado">
+      {% csrf_token %}
+      <input style="display: none;" type = "text" class = "form-control" name = "nombre" id="nombre" value="{{stock.7.nombreproducto}}">
+    <p><button type = "submit">Comprar</button></p>
+  </form>
+    <div id="datos8">
+      <div class="pie">
+        <h1>Pecera para tortuga marina</h3>
+          <br>
+          <h2>Tamaño:</h5><b> 40 cm x 91 cm</b></b>
+          <br>
+          <h1>precio:</h1>
+          <br>
+          <h2>$139.990</h2>
+          <h1>stock:</h1>
+          <h2>{{stock.7.stock}}</h2>
+      </div>
+      <p><button id="boton16" onclick="ocultar8();">Ocultar Datos</button></p>
+    </div>
+  </div>
+  </div>
+
+
+  <!--NOVENA FOTO-->
+  <div class="galeria">
+    <div class="foto">
+      <img src="{% static 'core/img/huron.png' %}" id=imagen9 alt="huron">
+    </div>
+  <div class="pie">
+    <p id="titulo9">Tunel para hurón</p>
+    <p><button id="boton17" onclick="mostrar9();">Datos</button></p>
+    <form method="POST" action="/Ventas_completado">
+      {% csrf_token %}
+      <input style="display: none;" type = "text" class = "form-control" name = "nombre" id="nombre" value="{{stock.8.nombreproducto}}">
+    <p><button type = "submit">Comprar</button></p>
+  </form>
+    <div id="datos9">
+      <div class="pie">
+        <h1>Tunel para hurón largo</h3>
+          <br>
+          <h2>Tamaño:</h2><b>Largo: 120cm</b></b>
+          <br>
+          <b>Diametro:10cm</b>
+          <br>
+          <h1>precio:</h1>
+          <br>
+          <h2>$22.990</h2>
+          <h1>stock:</h1>
+          <h2>{{stock.8.stock}}</h2>
+      </div>
+      <p><button id="boton18" onclick="ocultar9();">Ocultar Datos</button></p>
+    </div>
+  </div>
+  </div>
+
+
+
+</div>
+</div>
+<footer>
+<div class="container-fluid p-1 text-center" style="background-color: #4E94AB;">
+  <div style="margin-top: 10px;"> 
+    <p>Angelo Gonzales, Alonso Leiva, Kevin Godoy, Ignacio Sepulveda ©Copyrigth Derechos reservados.</p>
+  </div>
+  <div>
+    
+    <a href="Insertar direccion de enlace"><img src="{% static 'core/img/Facebook.png' %}" width="40px"></a>
+    <a href="Insertar direccion de enlace"><img src="{% static 'core/img/Twitter.png' %}" width="40px"></a>
+    <a href="Insertar direccion de enlace"><img src="{% static 'core/img/Instagram.png' %}" width="40px"></a>
+    
+  </div>
+
+</div> 
+</footer>  
+</body>
+</html>
